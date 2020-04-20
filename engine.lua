@@ -28,7 +28,7 @@ function math.clamp(val, lower, upper)
 end
 
 width, height = love.graphics.getDimensions()
-cell_size = 2
+cell_size = 4
 width_cells = math.floor(width / cell_size)
 height_cells = math.floor(height / cell_size)
 cells = {} -- create the matrix
