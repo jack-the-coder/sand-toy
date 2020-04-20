@@ -27,20 +27,20 @@ function math.clamp(val, lower, upper)
 	return math.max(lower, math.min(upper, val))
 end
 
--- play field width in pixels * cell_size
+-- play field width in pixels * cellSize
 width = 1067
 height = 600
 
 screenWidth, screenHeight = love.graphics.getDimensions()
 
 
-cell_size = 3.5
-width_cells = math.floor(width / cell_size)
-height_cells = math.floor(height / cell_size)
+cellSize = 3.5
+widthCells = math.floor(width / cellSize)
+heightCells = math.floor(height / cellSize)
 cells = {} -- create the matrix
 
-function is_valid_pos(pos)
-	if ((pos.x < width_cells) and (pos.y < height_cells)) then
+function isValidPos(pos)
+	if ((pos.x < widthCells) and (pos.y < heightCells)) then
 		if ((pos.x > 0) and (pos.y > 0)) then
 			return true
 		end
@@ -48,13 +48,13 @@ function is_valid_pos(pos)
 	return false
 end
 
-function make_particle(pos, type)
+function makeParticle(pos, type)
 	local p = {
 		type = type,
 		rA = 0.5 + math.random() * 0.1,
 		rB = 0
 	}
-	if (is_valid_pos(pos)) then
+	if (isValidPos(pos)) then
 		if (cells[pos.x][pos.y] == 0) then
 			cells[pos.x][pos.y] = p
 		end
@@ -67,7 +67,7 @@ function neighborGetter(pos)
 		local oY = math.clamp(offset.y, -1, 1)
 		local rX = pos.x + oX
 		local rY = pos.y + oY
-		if (rX < 1 or rX >= width_cells + 1 or rY < 1 or rY >= height_cells) then
+		if (rX < 1 or rX >= widthCells + 1 or rY < 1 or rY >= heightCells) then
 			return nil
 		end
 		return cells[rX][rY]
@@ -79,7 +79,7 @@ function neighborSetter(pos)
 		local oY = math.clamp(offset.y, -1, 1)
 		local rX = pos.x + oX
 		local rY = pos.y + oY
-		if (rX < 1 or rX >= width_cells + 1 or rY < 1 or rY >= height_cells) then
+		if (rX < 1 or rX >= widthCells + 1 or rY < 1 or rY >= heightCells) then
 			print("oob set")
 			return nil
 		end
@@ -93,18 +93,18 @@ function neighborSetter(pos)
 	end
 end
 
-for i = 1, width_cells do
+for i = 1, widthCells do
 	cells[i] = {} -- create a new row
-	for j = 1, height_cells do
+	for j = 1, heightCells do
 		cells[i][j] = 0
-		-- make_particle({x = i, y = j})
+		-- makeParticle({x = i, y = j})
 	end
 end
 
 for i = 0, 100 do
 	local pos = {
-		x = math.random(1, width_cells),
-		y = math.random(1, height_cells - 1)
+		x = math.random(1, widthCells),
+		y = math.random(1, heightCells - 1)
 	}
-	make_particle(pos, 1)
+	makeParticle(pos, 1)
 end

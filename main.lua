@@ -24,19 +24,19 @@ end
 -- passing the button and the x and y coordiante it was pressed at.
 function love.mousepressed(x, y, button, istouch)
 	-- Checks which button was pressed.
-	local buttonname = ""
+	local buttonName = ""
 	if button == 1 then
-		buttonname = "left"
+		buttonName = "left"
 	elseif button == 2 then
-		buttonname = "right"
+		buttonName = "right"
 	end
 
-	mouse = {x = math.floor(x / cell_size * (width / screenWidth)), y = math.floor(y / cell_size * (height / screenHeight))}
+	mouse = {x = math.floor(x / cellSize * (width / screenWidth)), y = math.floor(y / cellSize * (height / screenHeight))}
 end
 
 function love.mousemoved(x, y, dx, dy)
 	if mouse ~= nil then
-		mouse = {x = math.floor(x / cell_size * (width / screenWidth)), y = math.floor(y / cell_size * (height / screenHeight))}
+		mouse = {x = math.floor(x / cellSize * (width / screenWidth)), y = math.floor(y / cellSize * (height / screenHeight))}
 	end
 end
 
@@ -44,7 +44,7 @@ end
 -- passing the button and the x and y coordiante it was released at.
 function love.mousereleased(x, y, button, istouch)
 	-- Checks which button was pressed.
-	local buttonname = ""
+	local buttonName = ""
 	mouse = nil
 end
 
@@ -63,8 +63,8 @@ function love.load()
 	love.window.setMode(width, height, {resizable=true, vsync=true, minwidth=400, minheight=300})
 	love.window.setTitle("sand-toy")
 
-	-- myShader:send("width_cells", width_cells)
-	-- myShader:send("height_cells", height_cells)
+	-- myShader:send("widthCells", widthCells)
+	-- myShader:send("heightCells", heightCells)
 end
 -- function update
 
@@ -74,7 +74,7 @@ function love.update()
 	if (mouse ~= nil) then
 		for x = -n, n do
 			for y = -n, n do
-				make_particle({x = mouse.x + x, y = mouse.y + y}, currentType)
+				makeParticle({x = mouse.x + x, y = mouse.y + y}, currentType)
 			end
 		end
 	end
@@ -87,11 +87,11 @@ function love.update()
 		end
 	end
 end
-imageData = love.image.newImageData(width_cells, height_cells)
+imageData = love.image.newImageData(widthCells, heightCells)
 
 function love.draw()
 	love.graphics.setShader(myShader) --draw something here
-	-- imageData = love.image.newImageData(width_cells, height_cells)
+	-- imageData = love.image.newImageData(widthCells, heightCells)
 	image = love.graphics.newImage(imageData)
 
 	myShader:send("tex", image)
