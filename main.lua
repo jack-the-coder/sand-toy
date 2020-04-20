@@ -59,7 +59,7 @@ function love.load()
 	last = "none"
 	lastw = "none"
 	myShader = love.graphics.newShader("shader.fs")
-	love.window.setMode(800, 600, {resizable=true, vsync=false, minwidth=400, minheight=300})
+	love.window.setMode(800, 600, {resizable=true, vsync=true, minwidth=400, minheight=300})
 
 	-- myShader:send("width_cells", width_cells)
 	-- myShader:send("height_cells", height_cells)
