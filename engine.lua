@@ -28,13 +28,13 @@ function math.clamp(val, lower, upper)
 end
 
 -- play field width in pixels * cell_size
-width = 800
+width = 1067
 height = 600
 
 screenWidth, screenHeight = love.graphics.getDimensions()
 
 
-cell_size = 3
+cell_size = 3.5
 width_cells = math.floor(width / cell_size)
 height_cells = math.floor(height / cell_size)
 cells = {} -- create the matrix
