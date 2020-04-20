@@ -33,14 +33,25 @@ width_cells = math.floor(width / cell_size)
 height_cells = math.floor(height / cell_size)
 cells = {} -- create the matrix
 
+function is_valid_pos(pos)
+	if ((pos.x < width_cells) and (pos.y < height_cells)) then
+		if ((pos.x > 0) and (pos.y > 0)) then
+			return true
+		end
+	end
+	return false
+end
+
 function make_particle(pos, type)
 	local p = {
 		type = type,
 		rA = 0.5 + math.random() * 0.1,
 		rB = 0
 	}
-	if (cells[pos.x][pos.y] == 0) then
-		cells[pos.x][pos.y] = p
+	if (is_valid_pos(pos)) then
+		if (cells[pos.x][pos.y] == 0) then
+			cells[pos.x][pos.y] = p
+		end
 	end
 end
 
