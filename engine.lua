@@ -1,5 +1,3 @@
-Types = require("types")
-
 function dump(o)
 	if type(o) == "table" then
 		local s = "{ "

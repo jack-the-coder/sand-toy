@@ -1,4 +1,6 @@
 Engine = require("engine")
+Types = require("types")
+Player = require("player")
 
 love.graphics.setDefaultFilter("nearest")
 
