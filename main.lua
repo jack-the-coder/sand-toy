@@ -4,6 +4,7 @@ love.graphics.setDefaultFilter("nearest")
 
 mouse = nil
 currentType = 1
+
 function dump(o)
 	if type(o) == "table" then
 		local s = "{ "
@@ -30,12 +31,12 @@ function love.mousepressed(x, y, button, istouch)
 		buttonname = "right"
 	end
 
-	mouse = {x = math.floor(x / cell_size), y = math.floor(y / cell_size)}
+	mouse = {x = math.floor(x / cell_size * (width / screenWidth)), y = math.floor(y / cell_size * (height / screenHeight))}
 end
 
 function love.mousemoved(x, y, dx, dy)
 	if mouse ~= nil then
-		mouse = {x = math.floor(x / cell_size), y = math.floor(y / cell_size)}
+		mouse = {x = math.floor(x / cell_size * (width / screenWidth)), y = math.floor(y / cell_size * (height / screenHeight))}
 	end
 end
 
@@ -60,6 +61,7 @@ function love.load()
 	lastw = "none"
 	myShader = love.graphics.newShader("shader.fs")
 	love.window.setMode(800, 600, {resizable=true, vsync=true, minwidth=400, minheight=300})
+	love.window.setTitle("sand-toy")
 
 	-- myShader:send("width_cells", width_cells)
 	-- myShader:send("height_cells", height_cells)
@@ -67,6 +69,7 @@ end
 -- function update
 
 function love.update()
+	screenWidth, screenHeight = love.graphics.getDimensions()
 	local n = 5
 	if (mouse ~= nil) then
 		for x = -n, n do
