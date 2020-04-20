@@ -12,7 +12,11 @@ function updateCell(p, getNeighbor, setNeighbor)
     elseif (p.type == 6) then
         return updateFire(p, getNeighbor, setNeighbor)
     else
-        print("unknown type")
+        -- using wall because otherwise it creates 
+        -- black things that you can't remove
+        return updateWall(p, getNeighbor, setNeighbor)
+        -- commented out because this appears to decrease framerate
+        -- print("unknown type")
     end
 end
 

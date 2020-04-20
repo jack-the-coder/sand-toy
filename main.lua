@@ -59,6 +59,7 @@ function love.load()
 	last = "none"
 	lastw = "none"
 	myShader = love.graphics.newShader("shader.fs")
+	love.window.setMode(800, 600, {resizable=true, vsync=false, minwidth=400, minheight=300})
 
 	-- myShader:send("width_cells", width_cells)
 	-- myShader:send("height_cells", height_cells)
@@ -96,5 +97,6 @@ function love.draw()
 
 	love.graphics.setShader()
 
-	love.graphics.print("Current FPS: " .. tostring(love.timer.getFPS() .. " GC: " .. gcinfo()), 10, 10)
+	-- love.graphics.print("Current FPS: " .. tostring(love.timer.getFPS() .. " GC: " .. gcinfo()), 10, 10)
+	love.graphics.print("FPS: " .. tostring(love.timer.getFPS()))
 end

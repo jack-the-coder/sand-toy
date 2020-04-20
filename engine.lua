@@ -14,12 +14,13 @@ function dump(o)
 		return tostring(o)
 	end
 end
+
 function add(a, b)
 	return {x = a.x + b.x, y = a.y + b.y}
 end
 
 function math.clamp(val, lower, upper)
-	assert(val and lower and upper, "not very useful error message here")
+	assert(val and lower and upper, "math.clamp called with too few args")
 	if lower > upper then
 		lower, upper = upper, lower
 	end -- swap if boundaries supplied the wrong way
