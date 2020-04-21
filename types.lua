@@ -10,11 +10,13 @@ function updateCell(p, getNeighbor, setNeighbor, dt)
     elseif (p.type == 5) then
         return updateOil(p, getNeighbor, setNeighbor)
     elseif (p.type == 6) then
-        return updateFire(p, getNeighbor, setNeighbor)
+        return updateFire(p, getNeighbor, setNeighbor, dt)
     elseif (p.type == 7) then
         return updatePlayer(p, getNeighbor, setNeighbor, dt)
     elseif (p.type == 8) then
-        return updateClone(p, getNeighbor, setNeighbor, dt)
+        return updateClone(p, getNeighbor, setNeighbor)
+    elseif (p.type == 9) then
+        return updateLife(p, getNeighbor, setNeighbor)
     else
         -- using wall because otherwise it creates 
         -- black things that you can't remove
@@ -101,8 +103,11 @@ function updateOil(p, getNeighbor, setNeighbor)
     end
 end
 
-function updateFire(p, getNeighbor, setNeighbor)
+function updateFire(p, getNeighbor, setNeighbor, dt)
     local d = {x = math.random(-1, 1), y = math.random(-1, 0)}
+    local down = {x = math.random(-1, 1), y = 3}
+
+    counter = counter + dt
 
     for x = -1, 1 do
         for y = -1, 1 do
@@ -114,6 +119,11 @@ function updateFire(p, getNeighbor, setNeighbor)
                 return
             elseif nbr.type == 5 then
                 setNeighbor({x = x, y = y-2}, {type = 6, rA = 1.0, rB = 0})
+                if math.floor(math.random(0, 2)) then
+                    if getNeighbor(down) ~= 0 and getNeighbor(down) ~= nil and getNeighbor(down).type == 5 then
+                        setNeighbor(down, 0)
+                    end
+                end
             elseif nbr.type == 2 then
                 p.rA = 0
             end
