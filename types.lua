@@ -11,6 +11,8 @@ function updateCell(p, getNeighbor, setNeighbor)
         return updateClone(p, getNeighbor, setNeighbor)
     elseif (p.type == 6) then
         return updateFire(p, getNeighbor, setNeighbor)
+    elseif (p.type == 7) then
+        return updatePlayer(p, getNeighbor, setNeighbor)
     else
         -- using wall because otherwise it creates 
         -- black things that you can't remove
