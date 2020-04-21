@@ -33,7 +33,7 @@ height = 600
 screenWidth, screenHeight = love.graphics.getDimensions()
 
 
-cellSize = 3.5
+cellSize = 4.25
 widthCells = math.floor(width / cellSize)
 heightCells = math.floor(height / cellSize)
 cells = {} -- create the matrix

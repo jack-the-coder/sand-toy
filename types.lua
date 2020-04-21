@@ -13,6 +13,8 @@ function updateCell(p, getNeighbor, setNeighbor, dt)
         return updateFire(p, getNeighbor, setNeighbor)
     elseif (p.type == 7) then
         return updatePlayer(p, getNeighbor, setNeighbor, dt)
+    elseif (p.type == 8) then
+        return updateClone(p, getNeighbor, setNeighbor, dt)
     else
         -- using wall because otherwise it creates 
         -- black things that you can't remove
@@ -66,7 +68,7 @@ function updateClone(p, getNeighbor, setNeighbor)
             local nbr = getNeighbor({x = x, y = y})
 
             if (p.rB == 0) then
-                if (nbr ~= 0 and nbr.type ~= 5 and p.rB == 0) then
+                if (nbr ~= 0 and nbr.type ~= 8 and p.rB == 0) then
                     p.rB = nbr.type
                     p.rA = 1.0
                     return
