@@ -32,7 +32,7 @@ function updatePlayer(p, getNeighbor, setNeighbor, dt)
         if (getNeighbor(l) == 0 and aDown) then
     		setNeighbor({x = 0, y = 0}, 0)
         	setNeighbor(l, p)
-        	if math.floor(counter) % 5 == 0 then
+        	if math.floor(counter) % 50 == 0 then
         		aDown = false
         	end
         end

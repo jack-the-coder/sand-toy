@@ -111,7 +111,7 @@ function updateFire(p, getNeighbor, setNeighbor)
                 setNeighbor({x = x, y = y}, {type = 6, rA = 1.0, rB = 0})
                 return
             elseif nbr.type == 5 then
-                setNeighbor({x = x, y = y-1}, {type = 6, rA = 1.0, rB = 0})
+                setNeighbor({x = x, y = y-2}, {type = 6, rA = 1.0, rB = 0})
             elseif nbr.type == 2 then
                 p.rA = 0
             end
