@@ -2,7 +2,7 @@ player = {}
 
 function updatePlayer(p, getNeighbor, setNeighbor)
     local d = {x = math.random(-1, 1), y = 1}
-    p.rA = math.random() * 0.4 + 0.7
+    p.rA = math.random() * 0.2 + 0.7
     if (getNeighbor(d) == 0) then
         setNeighbor({x = 0, y = 0}, 0)
         setNeighbor(d, p)
