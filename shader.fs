@@ -9,7 +9,7 @@ vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords) 
   } else if (data.r > 5.1) {
     c = vec4(1.2, 0.4, 0.1, 1.0) * data.g;
   } else if (data.r > 4.1) {
-    c = vec4(0.9, 0.8, 0.5, 1.0) * data.g;
+    c = vec4(0.2, 0.2, 0.2, 1.0) * data.g;
   } else if (data.r > 3.1) {
     c = vec4(0.5, 0.5, 0.5, 1.0) * data.g;
   } else if (data.r > 2.1) {

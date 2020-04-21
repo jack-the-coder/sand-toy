@@ -70,9 +70,9 @@ function love.load()
 end
 -- function update
 
-function love.update()
+function love.update(dt)
 	screenWidth, screenHeight = love.graphics.getDimensions()
-	local n = 5
+	local n = 2 -- size of drop at cursor
 	if (mouse ~= nil) then
 		for x = -n, n do
 			for y = -n, n do
@@ -84,9 +84,18 @@ function love.update()
 		for y, p in ipairs(c) do
 			local pos = {x = x, y = y}
 			if (p ~= 0) then
-				updateCell(p, neighborGetter(pos), neighborSetter(pos))
+				updateCell(p, neighborGetter(pos), neighborSetter(pos), dt)
 			end
 		end
+	end
+	if love.keyboard.isDown('d') then
+		dDown = true
+	elseif love.keyboard.isDown('a') then
+		aDown = true
+	elseif love.keyboard.isDown('w') then
+		wDown = true
+	elseif love.keyboard.isDown('s') then
+		sDown = true
 	end
 end
 imageData = love.image.newImageData(widthCells, heightCells)

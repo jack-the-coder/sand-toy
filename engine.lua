@@ -26,13 +26,14 @@ function math.clamp(val, lower, upper)
 end
 
 -- play field width in pixels * cellSize
+-- also the default window size
 width = 1067
 height = 600
 
 screenWidth, screenHeight = love.graphics.getDimensions()
 
 
-cellSize = 3.5
+cellSize = 6
 widthCells = math.floor(width / cellSize)
 heightCells = math.floor(height / cellSize)
 cells = {} -- create the matrix
@@ -99,10 +100,10 @@ for i = 1, widthCells do
 	end
 end
 
-for i = 0, 100 do
-	local pos = {
-		x = math.random(1, widthCells),
-		y = math.random(1, heightCells - 1)
-	}
-	makeParticle(pos, 1)
-end
+--for i = 0, 100 do
+--	local pos = {
+--		x = math.random(1, widthCells),
+--		y = math.random(1, heightCells - 1)
+--	}
+--	makeParticle(pos, 1)
+--end

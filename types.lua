@@ -1,4 +1,4 @@
-function updateCell(p, getNeighbor, setNeighbor)
+function updateCell(p, getNeighbor, setNeighbor, dt)
     if (p.type == 1) then
         return updateDust(p, getNeighbor, setNeighbor)
     elseif (p.type == 2) then
@@ -8,11 +8,11 @@ function updateCell(p, getNeighbor, setNeighbor)
     elseif (p.type == 4) then
         return updateWall(p, getNeighbor, setNeighbor)
     elseif (p.type == 5) then
-        return updateClone(p, getNeighbor, setNeighbor)
+        return updateOil(p, getNeighbor, setNeighbor)
     elseif (p.type == 6) then
         return updateFire(p, getNeighbor, setNeighbor)
     elseif (p.type == 7) then
-        return updatePlayer(p, getNeighbor, setNeighbor)
+        return updatePlayer(p, getNeighbor, setNeighbor, dt)
     else
         -- using wall because otherwise it creates 
         -- black things that you can't remove
@@ -82,6 +82,23 @@ function updateClone(p, getNeighbor, setNeighbor)
     setNeighbor({x = 0, y = 0}, p)
 end
 
+function updateOil(p, getNeighbor, setNeighbor)
+    local d = {x = math.random(-1, 1), y = 1}
+    p.rA = math.random() * 0.4 + 0.3
+    if (getNeighbor(d) == 0) then
+        setNeighbor({x = 0, y = 0}, 0)
+        setNeighbor(d, p)
+    elseif (getNeighbor({x = d.x, y = 0}) == 0) then
+        setNeighbor({x = 0, y = 0}, 0)
+        setNeighbor({x = d.x, y = 0}, p)
+    elseif (getNeighbor({x = -d.x, y = 0}) == 0) then
+        setNeighbor({x = 0, y = 0}, 0)
+        setNeighbor({x = -d.x, y = 0}, p)
+    else
+        setNeighbor({x = 0, y = 0}, p)
+    end
+end
+
 function updateFire(p, getNeighbor, setNeighbor)
     local d = {x = math.random(-1, 1), y = math.random(-1, 0)}
 
@@ -93,6 +110,8 @@ function updateFire(p, getNeighbor, setNeighbor)
             elseif nbr.type == 3 then
                 setNeighbor({x = x, y = y}, {type = 6, rA = 1.0, rB = 0})
                 return
+            elseif nbr.type == 5 then
+                setNeighbor({x = x, y = y-1}, {type = 6, rA = 1.0, rB = 0})
             elseif nbr.type == 2 then
                 p.rA = 0
             end
