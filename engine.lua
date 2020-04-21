@@ -38,6 +38,8 @@ widthCells = math.floor(width / cellSize)
 heightCells = math.floor(height / cellSize)
 cells = {} -- create the matrix
 
+chunks = {}
+
 function isValidPos(pos)
 	if ((pos.x < widthCells) and (pos.y < heightCells)) then
 		if ((pos.x > 0) and (pos.y > 0)) then
@@ -72,6 +74,7 @@ function neighborGetter(pos)
 		return cells[rX][rY]
 	end
 end
+
 function neighborSetter(pos)
 	return function(offset, v)
 		local oX = math.clamp(offset.x, -1, 1)

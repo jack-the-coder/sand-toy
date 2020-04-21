@@ -1,5 +1,8 @@
 player = {}
 
+player.xSpeed = 0
+player.ySpeed = 0
+
 wDown = false
 aDown = false
 sDown = false
@@ -18,32 +21,5 @@ function updatePlayer(p, getNeighbor, setNeighbor, dt)
     	-- uncomment this for liquid-like shininess
     	-- setNeighbor({x = 0, y = 0}, p)
     end
-    if wDown then
-    	if (getNeighbor(u) == 0 or getNeighbor(u) == 7) then
-    		setNeighbor({x = 0, y = 0}, 0)
-    		setNeighbor(u, p)
-    	end
-    	if math.clamp(dt, 0, 10) % 2 == 0 then
-    		wDown = false
-    	end
-    end
-    if aDown then
-    	if (getNeighbor(l) == 0 or getNeighbor(l) == 7) then
-    		setNeighbor({x = 0, y = 0}, 0)
-    		setNeighbor(l, p)
-    	end
-    	if math.clamp(dt, 0, 10) % 2 == 0 then
-    		aDown = false
-    	end
-    end
-    if dDown then
-    	if (getNeighbor(r) == 0 or getNeighbor(r) == 7) then
-    		setNeighbor({x = 0, y = 0}, 0)
-    		setNeighbor(r, p)
-    	end
-    	if math.clamp(dt, 0, 10) % 2 == 0 then
-    		dDown = false
-    	end
-    end
-
+    
 end
